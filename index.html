@@ -83,6 +83,13 @@
 
 
             <script>
+                // 用 javascript 預載張嘴圖片 op.png
+                const img = new Image();
+                img.src = 'imgs/op.png';
+
+                // 用 javascript 預載音效 pop1.mp3
+                const audio = new Audio('pops/pop1.mp3');
+
                 // 1. 計數器初始化
                 let count = 0;
                 // 將計數器顯示到 HTML 元素，用 id 抓取
@@ -96,9 +103,8 @@
                     count++;
                 }
 
-                // 當滑鼠按下切換張嘴圖片
-                // 註冊滑鼠按下的事件
-                document.addEventListener("mousedown", function(){
+
+                function handleInteraction(){
                     // 3. 每次滑鼠按下時，執行累加函式
                     addCount();
                     // 4. 更新計數器
@@ -107,13 +113,28 @@
                     catImg.id = 'op';
 
                     // 6. 播放音效
-                    const audio = new Audio('pops/pop1.mp3');
                     audio.play();
+                }
+
+                // 當滑鼠按下切換張嘴圖片
+                // 註冊滑鼠按下的事件
+                document.addEventListener("mousedown", function(){
+                    handleInteraction();
                 });
 
 
+                // 除了滑鼠，也可以用鍵盤互動
+                // 註冊鍵盤按下的事件
+                document.addEventListener("keydown", function(){
+                    handleInteraction();
+                });
+
                 //放開便恢復原來圖片
                 document.addEventListener("mouseup", function(){
+                    catImg.id = 'p';
+                });
+
+                document.addEventListener("keyup", function(){
                     catImg.id = 'p';
                 });
             </script>
