@@ -71,8 +71,6 @@
                     margin: 0;
                     font-family: sans-serif;
                 }
-
-
             </style>
         </head>
 
@@ -82,5 +80,42 @@
                 <img class="title" src="imgs/popcat.svg" alt="POPCAT">
                 <div class="cat-img" id="p">0</div>
             </div>
+
+
+            <script>
+                // 1. 計數器初始化
+                let count = 0;
+                // 將計數器顯示到 HTML 元素，用 id 抓取
+                const catImg = document.getElementById('p');
+                // 顯示計數器
+                catImg.textContent = count;
+
+                // 新增一個 function 用來累加
+                function addCount(){
+                    // 2. 計數器累加
+                    count++;
+                }
+
+                // 當滑鼠按下切換張嘴圖片
+                // 註冊滑鼠按下的事件
+                document.addEventListener("mousedown", function(){
+                    // 3. 每次滑鼠按下時，執行累加函式
+                    addCount();
+                    // 4. 更新計數器
+                    catImg.textContent = count;
+                    // 5. 切換張嘴圖片
+                    catImg.id = 'op';
+
+                    // 6. 播放音效
+                    const audio = new Audio('pops/pop1.mp3');
+                    audio.play();
+                });
+
+
+                //放開便恢復原來圖片
+                document.addEventListener("mouseup", function(){
+                    catImg.id = 'p';
+                });
+            </script>
         </body>
 </html>
